@@ -47,7 +47,7 @@ namespace MicMuter
 
             if (Settings.Default.FirstTime)
             {
-                MessageBox.Show("By default, the keybind to toggle mute is set to Ctrl+Alt+Backslash (shown as ControlKey+Menu+Oem5).\nThis can be changed in the options menu.", "Mic Muter");
+                MessageBox.Show("By default, the keybind to toggle mute is set to Ctrl+Alt+Backslash (shown as ControlKey+Menu+Oem5). This can be changed in the options menu.\n\nYou can also toggle mute by click on the tray icon.", "Mic Muter");
                 Settings.Default.FirstTime = false;
                 Settings.Default.Save();
                 Thread.Sleep(200);
@@ -59,7 +59,8 @@ namespace MicMuter
                 setTrayIcon();
                 Subscribe(); // keyboard hook
                 this.Height = 191;
-            } catch (Exception ex)
+            } 
+            catch (Exception ex)
             {
                 MessageBox.Show($"The following error occured during initialization. \n\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
