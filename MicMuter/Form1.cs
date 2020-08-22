@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Microsoft.Win32;
 
 namespace MicMuter
 {
@@ -151,7 +152,7 @@ namespace MicMuter
         {
             if (showOptionsCheckbox.Checked)
             {
-                this.Height = 332;
+                this.Height = 349;
             }
             else
             {
@@ -164,6 +165,7 @@ namespace MicMuter
             optionsMenu.SetItemChecked(0, Settings.Default.StartMinimized);
             optionsMenu.SetItemChecked(1, Settings.Default.DontShowExitDialog);
             optionsMenu.SetItemChecked(2, Settings.Default.PlaySound);
+            optionsMenu.SetItemChecked(3, Settings.Default.RunOnStartup);
         }
 
         private void optionsMenu_SelectedIndexChanged(object sender, EventArgs e)
@@ -171,6 +173,18 @@ namespace MicMuter
             Settings.Default.StartMinimized = optionsMenu.GetItemChecked(0);
             Settings.Default.DontShowExitDialog = optionsMenu.GetItemChecked(1);
             Settings.Default.PlaySound = optionsMenu.GetItemChecked(2);
+            Settings.Default.RunOnStartup = optionsMenu.GetItemChecked(3);
+
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (Settings.Default.RunOnStartup)
+            {
+                rk.SetValue("MicMuter", Application.ExecutablePath);
+            }
+            else
+            {
+                rk.DeleteValue("MicMuter", false);
+            }
+
             Settings.Default.Save();
         }
 
@@ -218,6 +232,18 @@ namespace MicMuter
         {
             var setKeybindWindow = new SetKeybindWindow();
             setKeybindWindow.Show();
+        }
+
+        private void devLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://github.com/rednir/MicMuter");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

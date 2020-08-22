@@ -43,8 +43,9 @@
             this.optionsMenu = new System.Windows.Forms.CheckedListBox();
             this.editKeybindButton = new System.Windows.Forms.Button();
             this.currectKeybindLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.devLink = new System.Windows.Forms.LinkLabel();
             this.trayIconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,17 +151,18 @@
             this.optionsMenu.Items.AddRange(new object[] {
             "Start minimized",
             "Don\'t show dialog on exit",
-            "Play sound when toggling mute"});
+            "Play sound when toggling mute",
+            "Run on windows startup"});
             this.optionsMenu.Location = new System.Drawing.Point(12, 154);
             this.optionsMenu.Name = "optionsMenu";
-            this.optionsMenu.Size = new System.Drawing.Size(264, 55);
+            this.optionsMenu.Size = new System.Drawing.Size(264, 72);
             this.optionsMenu.TabIndex = 4;
             this.optionsMenu.SelectedIndexChanged += new System.EventHandler(this.optionsMenu_SelectedIndexChanged);
             // 
             // editKeybindButton
             // 
             this.editKeybindButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.editKeybindButton.Location = new System.Drawing.Point(225, 215);
+            this.editKeybindButton.Location = new System.Drawing.Point(225, 233);
             this.editKeybindButton.Name = "editKeybindButton";
             this.editKeybindButton.Size = new System.Drawing.Size(51, 23);
             this.editKeybindButton.TabIndex = 5;
@@ -172,20 +174,11 @@
             // 
             this.currectKeybindLabel.AutoSize = true;
             this.currectKeybindLabel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.currectKeybindLabel.Location = new System.Drawing.Point(12, 220);
+            this.currectKeybindLabel.Location = new System.Drawing.Point(9, 238);
             this.currectKeybindLabel.Name = "currectKeybindLabel";
             this.currectKeybindLabel.Size = new System.Drawing.Size(60, 13);
             this.currectKeybindLabel.TabIndex = 6;
             this.currectKeybindLabel.Text = "Keybind: []";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 114);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "The program will";
             // 
             // label2
             // 
@@ -196,12 +189,36 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "minimize to the system tray";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 114);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "The program will";
+            // 
+            // devLink
+            // 
+            this.devLink.ActiveLinkColor = System.Drawing.Color.Blue;
+            this.devLink.AutoSize = true;
+            this.devLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.devLink.Location = new System.Drawing.Point(108, 288);
+            this.devLink.Name = "devLink";
+            this.devLink.Size = new System.Drawing.Size(72, 13);
+            this.devLink.TabIndex = 9;
+            this.devLink.TabStop = true;
+            this.devLink.Text = "Github page";
+            this.devLink.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.devLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.devLink_LinkClicked);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(288, 293);
+            this.ClientSize = new System.Drawing.Size(288, 310);
+            this.Controls.Add(this.devLink);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.currectKeybindLabel);
@@ -244,8 +261,9 @@
         private System.Windows.Forms.ToolStripSeparator trayMenuSeparator1;
         private System.Windows.Forms.Button editKeybindButton;
         private System.Windows.Forms.Label currectKeybindLabel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel devLink;
     }
 }
 
